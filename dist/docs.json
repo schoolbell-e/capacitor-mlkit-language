@@ -1,0 +1,31 @@
+{
+  "api": {
+    "name": "MLKitLanguagePlugin",
+    "slug": "mlkitlanguageplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "identifyLanguage",
+        "signature": "(options: { text: string; }) => Promise<{ languageCode: string; }>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ text: string; }"
+          }
+        ],
+        "returns": "Promise<{ languageCode: string; }>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "identifylanguage"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}
