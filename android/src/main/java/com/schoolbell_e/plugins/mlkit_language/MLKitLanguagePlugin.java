@@ -11,12 +11,21 @@ public class MLKitLanguagePlugin extends Plugin {
 
     private MLKitLanguage implementation = new MLKitLanguage();
 
-    @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
+    @PluginMethod()
+    public void identifyLanguage(PluginCall call) {
+        String value = call.getString("text");
+        implementation.identifyLanguage(value, new MLKitLanguage.Callback() {
+            @Override
+            public void resolve(String lang) {
+                JSObject ret = new JSObject();
+                ret.put("languageCode", lang);
+                call.resolve(ret);
+            }
 
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
+            @Override
+            public void reject(String errorMessage) {
+                call.reject(errorMessage);
+            }
+        });
     }
 }

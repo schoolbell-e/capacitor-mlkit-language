@@ -9,10 +9,16 @@ import Capacitor
 public class MLKitLanguagePlugin: CAPPlugin {
     private let implementation = MLKitLanguage()
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
+    @objc func identifyLanguage(_ call: CAPPluginCall) {
+        let value = call.getString("text") ?? ""
+        if value.isEmpty {
+            call.reject("empty string given")
+            return
+        }
+        
+        let lang = implementation.identifyLanguage(for:value)
         call.resolve([
-            "value": implementation.echo(value)
+            "languageCode": lang
         ])
     }
 }
